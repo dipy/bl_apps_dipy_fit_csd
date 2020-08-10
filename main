@@ -12,6 +12,8 @@ case "$cmd" in
     dipy_fit_csd)
         cat > script.sh <<EOF
 #!/bin/bash
+mkdir -p output
+chmod -R +w output
 $cmd --force \
     --out_dir $(pwd) \
     --b0_threshold $(jq -r .b0_threshold config.json) \
