@@ -12,8 +12,10 @@ case "$cmd" in
     dipy_fit_csd)
         cat > script.sh <<EOF
 #!/bin/bash
+mkdir -p output
+chmod -R +w output
 $cmd --force \
-    --out_dir $(pwd) \
+    --out_dir $(pwd)/output \
     --b0_threshold $(jq -r .b0_threshold config.json) \
     --bvecs_tol $(jq -r .bvecs_tol config.json) \
     --roi_radius $(jq -r .roi_radius config.json) \
