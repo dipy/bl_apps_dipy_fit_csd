@@ -21,7 +21,6 @@ time singularity exec -e docker://brainlife/dipy:1.1.1 dipy_fit_csd \
     --extract_pam_values \
     --sh_order $(jq -r .sh_order config.json) \
     --odf_to_sh_order $(jq -r .odf_to_sh_order config.json) \
-    --parallel \
     $(jq -r .dwi config.json) $(jq -r .bvals config.json) \
     $(jq -r .bvecs config.json) $(jq -r .mask config.json)
 
