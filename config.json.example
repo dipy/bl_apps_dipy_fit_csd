@@ -1,13 +1,12 @@
 {
-    "command": "dipy_fit_csd",
     "b0_threshold": 5,
     "bvecs_tol": 0.01,
-    "roi_radius":10,
-    "fa_thr":0.7,
-    "sh_order":6,
-    "odf_to_sh_order":8,
+    "roi_radius": 10,
+    "fa_thr": 0.7,
+    "sh_order": 6,
+    "odf_to_sh_order": 8,
     "dwi": "testdata/data.nii.gz",
     "bvals": "testdata/data.bvals",
     "bvecs": "testdata/data.bvecs",
-    "mask": "testdata/mask.nii.gz",
+    "mask": "testdata/mask.nii.gz"
 }
