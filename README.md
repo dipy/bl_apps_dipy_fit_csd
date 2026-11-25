@@ -3,6 +3,52 @@
 
 # Dipy Reconstruction Diffusion MRI using CSD
 
+<!-- brainlife-app:begin (generated from the App manifest; edit the manifest, not this block) -->
+
+> **Fit Constrained spherical deconvolution (CSD) model to diffusion data (dipy_fit_csd)**
+
+Wraps the DIPY 1.1.1 dipy_fit_csd workflow: estimates a single-fibre response function from high-FA voxels in a central ROI, fits constrained spherical deconvolution within the mask, and extracts peaks and spherical-harmonic coefficients (peaks and metrics, --extract_pam_values). Use it to obtain fibre orientations for tractography. Requires a DWI with bvals/bvecs and a brain mask in the same space.
+
+| | |
+|---|---|
+| 📥 **Inputs** | `neuro/dwi` · `neuro/mask` |
+| 📤 **Outputs** | `neuro/peaks_and_metrics` |
+| 🐳 **Container** | `brainlife/dipy:1.1.1` |
+| ⚙️ **Resources** | 8 CPUs · 16 GB memory · 10 h walltime |
+| 🔗 **Run it** | [doi.org/10.25663/bl.app.62](https://doi.org/10.25663/bl.app.62) |
+
+#### 📥 Inputs
+
+| Input | Datatype | Required | Description |
+|---|---|---|---|
+| `dwi` | `neuro/dwi` | yes | Diffusion-weighted image with its bvals and bvecs. |
+| `mask` | `neuro/mask` (brain) | yes | Brain mask restricting the CSD fit. Must be in the same space as the DWI. |
+
+#### 📤 Outputs
+
+| Output | Datatype | Description |
+|---|---|---|
+| `output` | `neuro/peaks_and_metrics` | CSD peaks and metrics from dipy_fit_csd: peaks, peak values and indices, SH coefficients, GFA and the PAM5 file. |
+
+<details>
+<summary><b>⚙️ Parameters</b> (6)</summary>
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `b0_threshold` | number | `50` | Threshold used to find b=0 directions |
+| `bvecs_tol` | number | `0.01` | Bvecs should be unit vectors. (default:0.01) |
+| `roi_radius` | number | `10` | Radius of cubic ROI in voxels (default 10) |
+| `fa_thr` | number | `0.7` | FA threshold for calculating the response function (default 0.7) |
+| `sh_order` | number | `6` | Spherical harmonics order (default 6) used in the CSA fit. |
+| `odf_to_sh_order` | number | `8` | Spherical harmonics order used for peak_from_model to compress the ODF to spherical harmonics coefficients (default 8) |
+
+</details>
+
+📚 **References used by this App:**
+- Garyfallidis E, Brett M, Amirbekian B, et al. Dipy, a library for the analysis of diffusion MRI data. Front Neuroinform 8:8 (2014). [doi:10.3389/fninf.2014.00008](https://doi.org/10.3389/fninf.2014.00008)
+
+<!-- brainlife-app:end -->
+
 The App uses the Constrained Spherical Deconvolution (CSD) method to do a reconstruction of the diffusion-weighted magnetic resonance imaging data.
 
 ### Authors
